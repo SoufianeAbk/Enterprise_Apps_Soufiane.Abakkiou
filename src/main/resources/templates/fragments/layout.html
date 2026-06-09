@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<!--
+  Gedeelde fragmenten: head, navbar en footer.
+  Elke pagina hergebruikt deze zodat het menu en de footer overal gelijk zijn.
+-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} + ' · Samen Anderlecht vzw'">Samen Anderlecht vzw</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+<!-- Navigatiemenu: NGO-naam (links naar index), Nieuw, Over ons, Contact -->
+<nav th:fragment="navbar" class="bg-white border-b border-gray-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a th:href="@{/}" class="text-xl font-bold text-emerald-700 tracking-tight">
+            Samen Anderlecht
+            <span class="text-gray-400 font-normal text-sm">vzw</span>
+        </a>
+        <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
+            <a th:href="@{/new}" class="hover:text-emerald-700 transition-colors">Nieuw evenement</a>
+            <a th:href="@{/about}" class="hover:text-emerald-700 transition-colors">Over ons</a>
+            <a th:href="@{/contact}" class="hover:text-emerald-700 transition-colors">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Footer: enkel copyright -->
+<footer th:fragment="footer" class="border-t border-gray-200 mt-16">
+    <div class="max-w-5xl mx-auto px-4 py-6 text-center text-sm text-gray-400">
+        &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
+        Samen Anderlecht vzw — Alle rechten voorbehouden.
+    </div>
+</footer>
+</body>
+</html>

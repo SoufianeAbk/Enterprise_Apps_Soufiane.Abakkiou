@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Nieuw evenement')}"></head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="flex-grow w-full max-w-2xl mx-auto px-4 py-10">
+    <header class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Nieuw evenement</h1>
+        <p class="text-gray-500 mt-1">Vul alle velden in om een evenement toe te voegen.</p>
+    </header>
+
+    <form th:action="@{/new}" th:object="${eventForm}" method="post"
+          class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 space-y-5">
+
+        <div>
+            <label for="titel" class="block text-sm font-medium text-gray-700 mb-1">Titel</label>
+            <input type="text" id="titel" th:field="*{titel}"
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"/>
+            <p th:if="${#fields.hasErrors('titel')}" th:errors="*{titel}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div>
+            <label for="tijdstip" class="block text-sm font-medium text-gray-700 mb-1">Tijdstip</label>
+            <input type="datetime-local" id="tijdstip" th:field="*{tijdstip}"
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"/>
+            <p th:if="${#fields.hasErrors('tijdstip')}" th:errors="*{tijdstip}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div>
+            <label for="omschrijving" class="block text-sm font-medium text-gray-700 mb-1">Omschrijving</label>
+            <textarea id="omschrijving" th:field="*{omschrijving}" rows="4"
+                      class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"></textarea>
+            <p th:if="${#fields.hasErrors('omschrijving')}" th:errors="*{omschrijving}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div>
+            <label for="organisatie" class="block text-sm font-medium text-gray-700 mb-1">Organisatie</label>
+            <input type="text" id="organisatie" th:field="*{organisatie}" placeholder="Eigen beheer of naam van de partner"
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"/>
+            <p th:if="${#fields.hasErrors('organisatie')}" th:errors="*{organisatie}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div>
+            <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-1">E-mail contactpersoon</label>
+            <input type="email" id="contactEmail" th:field="*{contactEmail}"
+                   class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"/>
+            <p th:if="${#fields.hasErrors('contactEmail')}" th:errors="*{contactEmail}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div>
+            <label for="locationId" class="block text-sm font-medium text-gray-700 mb-1">Locatie</label>
+            <select id="locationId" th:field="*{locationId}"
+                    class="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none">
+                <option value="">-- Kies een locatie --</option>
+                <option th:each="loc : ${locations}" th:value="${loc.id}"
+                        th:text="${loc.naam + ' — ' + loc.adres + ' (max. ' + loc.capaciteit + ' pers.)'}">Locatie</option>
+            </select>
+            <p th:if="${#fields.hasErrors('locationId')}" th:errors="*{locationId}" class="text-red-600 text-sm mt-1"></p>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+            <button type="submit"
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm transition-colors">
+                Opslaan
+            </button>
+            <a th:href="@{/}" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2.5">Annuleren</a>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
