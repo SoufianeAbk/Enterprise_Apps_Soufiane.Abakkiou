@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<!-- Navigatiemenu: NGO-naam (links naar index), Nieuw, Over ons, Contact -->
+<!-- Navigatiemenu: NGO-naam (links naar index), Nieuw, Over ons -->
 <nav th:fragment="navbar" class="bg-white border-b border-gray-200 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
         <a th:href="@{/}" class="text-xl font-bold text-emerald-700 tracking-tight">
@@ -22,7 +22,6 @@
         <div class="flex items-center gap-6 text-sm font-medium text-gray-600">
             <a th:href="@{/new}" class="hover:text-emerald-700 transition-colors">Nieuw evenement</a>
             <a th:href="@{/about}" class="hover:text-emerald-700 transition-colors">Over ons</a>
-            <a th:href="@{/contact}" class="hover:text-emerald-700 transition-colors">Contact</a>
         </div>
     </div>
 </nav>
