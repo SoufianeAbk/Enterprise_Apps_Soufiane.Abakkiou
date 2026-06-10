@@ -29,7 +29,7 @@
 <!-- Footer: enkel copyright -->
 <footer th:fragment="footer" class="border-t border-gray-200 mt-16">
     <div class="max-w-5xl mx-auto px-4 py-6 text-center text-sm text-gray-400">
-        &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
+        &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2026</span>
         Samen Anderlecht vzw — Alle rechten voorbehouden.
     </div>
 </footer>
