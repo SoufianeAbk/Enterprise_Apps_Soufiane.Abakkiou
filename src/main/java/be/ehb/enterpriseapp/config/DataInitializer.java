@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 /**
- * Vult de in-memory database met voorbeelddata zodat het prototype
- * meteen iets toont. Wordt enkel uitgevoerd als de database leeg is.
+ * Vult de in-memory database met exact tien voorbeeldevenementen zodat
+ * het prototype meteen iets toont. Wordt enkel uitgevoerd als de database leeg is.
  */
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -88,15 +88,5 @@ public class DataInitializer implements CommandLineRunner {
                 "Solidariteitsconcert",
                 "Lokale artiesten spelen ten voordele van het buurtfonds.",
                 "Eigen beheer", "concert@samenanderlecht.be", sporthal));
-
-        events.save(new Event(base.plusDays(27).withHour(14),
-                "Workshop CV en sollicitatie",
-                "Hulp bij het opstellen van je cv en het voorbereiden van sollicitatiegesprekken.",
-                "VDAB Brussel", "begeleiding@vdab-brussel.be", buurthuis));
-
-        events.save(new Event(base.plusDays(30).withHour(10),
-                "Buurtontbijt",
-                "Start de dag samen met een gezellig ontbijt voor de hele buurt.",
-                "Eigen beheer", "ontbijt@samenanderlecht.be", park));
     }
 }

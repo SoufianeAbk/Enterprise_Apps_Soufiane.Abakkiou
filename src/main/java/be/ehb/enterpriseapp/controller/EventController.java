@@ -27,10 +27,10 @@ public class EventController {
         this.locations = locations;
     }
 
-    /** Index: overzicht van de tien laatste evenementen. */
+    /** Index: overzicht van de tien meest recent toegevoegde evenementen. */
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("events", events.findTop10ByOrderByTijdstipDesc());
+        model.addAttribute("events", events.findTop10ByOrderByIdDesc());
         return "index";
     }
 
@@ -73,6 +73,16 @@ public class EventController {
         }
         events.save(new Event(form.getTijdstip(), form.getTitel(), form.getOmschrijving(),
                 form.getOrganisatie(), form.getContactEmail(), location));
+        return "redirect:/";
+    }
+
+    /** Verwijdert een evenement en keert terug naar de index. */
+    @PostMapping("/events/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        if (!events.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement niet gevonden");
+        }
+        events.deleteById(id);
         return "redirect:/";
     }
 }

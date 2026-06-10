@@ -41,6 +41,16 @@
                 <dd class="col-span-2 text-gray-900 whitespace-pre-line" th:text="${event.omschrijving}">Omschrijving</dd>
             </div>
         </dl>
+
+        <div class="mt-6 pt-4 border-t border-gray-100 flex justify-end">
+            <form th:action="@{/events/{id}/delete(id=${event.id})}" method="post"
+                  onsubmit="return confirm('Ben je zeker dat je dit evenement wilt verwijderen?');">
+                <button type="submit"
+                        class="bg-red-600 hover:bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm transition-colors">
+                    Evenement verwijderen
+                </button>
+            </form>
+        </div>
     </article>
 </main>
 

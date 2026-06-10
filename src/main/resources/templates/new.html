@@ -26,6 +26,7 @@
         <div>
             <label for="tijdstip" class="block text-sm font-medium text-gray-700 mb-1">Tijdstip</label>
             <input type="datetime-local" id="tijdstip" th:field="*{tijdstip}"
+                   min="2000-01-01T00:00"
                    class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-emerald-500 focus:ring-emerald-500 focus:outline-none"/>
             <p th:if="${#fields.hasErrors('tijdstip')}" th:errors="*{tijdstip}" class="text-red-600 text-sm mt-1"></p>
         </div>

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    /** De tien meest recente evenementen, gesorteerd op tijdstip (nieuwste eerst). */
-    List<Event> findTop10ByOrderByTijdstipDesc();
+    /** De tien meest recent toegevoegde evenementen. */
+    List<Event> findTop10ByOrderByIdDesc();
 }
